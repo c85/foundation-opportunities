@@ -10,7 +10,7 @@ A Streamlit app that allows users to explore and filter foundation opportunities
 
 ## Demo
 
-[Click here to launch the app](https://foundation-opportunities.streamlit.app/){:target="_blank"} 
+[Click here to launch the app](https://foundation-opportunities.streamlit.app/)
 
 ## Getting Started
 
