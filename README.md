@@ -23,7 +23,7 @@ Ensure you have the following installed:
 
     ```bash
     git clone https://github.com/c85/foundation-opportunities.git
-    cd your-repo-name
+    cd foundation-opportunities
     ```
 
 2. Install the required Python packages:
