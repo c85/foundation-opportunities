@@ -8,6 +8,10 @@ A Streamlit app that allows users to explore and filter foundation opportunities
 - **Custom Filters**: Allows users to filter foundation opportunities based on tags, deadlines, and other fields.
 - **Interactive Interface**: Provides an intuitive and interactive way to explore foundation opportunities.
 
+## Demo
+
+[Link to live app](https://foundation-opportunities.streamlit.app/)
+
 ## Getting Started
 
 ### Prerequisites
