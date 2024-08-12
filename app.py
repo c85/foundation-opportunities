@@ -75,7 +75,7 @@ def airtable_dataset(request_id, access_policy, application_id, page_load_id):
     data_df = pd.read_csv(StringIO(data_csv))
     data_df.columns = [col.upper().replace(' ', '_') for col in data_df.columns]
     data_df = data_df.rename(columns={"MAXIMUM_AMOUNT": "AMOUNT", "MAXIMUM_DURATION": "DURATION"})
-    data_df['DEADLINE'] = pd.to_datetime(data_df['DEADLINE'], errors='coerce').dt.strftime('%m/%d/%Y')
+    data_df.loc[:, 'DEADLINE'] = pd.to_datetime(data_df['DEADLINE'], format='%m/%d/%Y', errors='coerce')
     
     data_df['AMOUNT'] = data_df['AMOUNT'].apply(airtable_format_amount)
     data_df['TAGS'] = data_df['TAGS'].fillna('')
