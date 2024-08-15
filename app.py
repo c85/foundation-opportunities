@@ -122,7 +122,6 @@ def airtable_filters(df, unique_tags):
 
     return df
 
-
 def airtable_apply_filters(df, filters):
     for col, filter_values in filters.items():
         if isinstance(filter_values, tuple):
@@ -203,15 +202,15 @@ def main():
             else:
                 st.markdown(f"<b>DEADLINE:</b> Rolling", unsafe_allow_html=True)
 
-            if pd.notnull(row["ELIGIBILITY_REQUIREMENTS"]):
-                st.markdown(f"<b>ELIGIBILITY REQUIREMENTS:</b> {row['ELIGIBILITY_REQUIREMENTS']}", unsafe_allow_html=True)
-
             for col in selected_item.columns:
                 if col not in ["select", "ID_NUMBER", "SPONSOR", "OPPORTUNITY_NAME", "URL", "TAGS", "DESCRIPTION", "DEADLINE_STATUS", "DEADLINE", "AMOUNT", "DEADLINE_TYPE", "CAREER_LEVEL", "DURATION", "ELIGIBILITY_REQUIREMENTS", "LIMITED_SUBMISSION"] and pd.notnull(row[col]):
                     st.markdown(f"<b>{col}:</b> {row[col]}", unsafe_allow_html=True)
                     
             if pd.notnull(row["DESCRIPTION"]):
                 st.markdown(f"<b>DESCRIPTION:</b> {row['DESCRIPTION']}", unsafe_allow_html=True)
+
+            if pd.notnull(row["ELIGIBILITY_REQUIREMENTS"]):
+                st.markdown(f"<b>ELIGIBILITY REQUIREMENTS:</b> {row['ELIGIBILITY_REQUIREMENTS']}", unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
 
