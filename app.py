@@ -195,7 +195,7 @@ def main():
                 st.markdown(f"<b>AMOUNT:</b> {row['AMOUNT']}", unsafe_allow_html=True)
 
             if pd.notnull(row["DEADLINE"]):
-                st.markdown(f"<b>DEADLINE:</b> {row['DEADLINE']}", unsafe_allow_html=True)
+                st.markdown(f"<b>DEADLINE:</b> {row['DEADLINE_STATUS']} due {row['DEADLINE']}", unsafe_allow_html=True)
             else:
                 st.markdown(f"<b>DEADLINE:</b> Rolling", unsafe_allow_html=True)
 
