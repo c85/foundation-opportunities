@@ -200,7 +200,7 @@ def main():
                 st.markdown(f"<b>DEADLINE:</b> Rolling", unsafe_allow_html=True)
 
             for col in selected_item.columns:
-                if col not in ["select", "ID_NUMBER", "SPONSOR", "OPPORTUNITY_NAME", "URL", "TAGS", "DESCRIPTION", "DEADLINE_STATUS", "DEADLINE", "AMOUNT", "DEADLINE_TYPE", "CAREER_LEVEL", "DURATION", "ELIGIBILITY_REQUIREMENTS", "LIMITED_SUBMISSION"] and pd.notnull(row[col]):
+                if col not in ["select", "ID_NUMBER", "SPONSOR", "OPPORTUNITY_NAME", "URL", "TAGS", "DESCRIPTION", "DEADLINE_STATUS", "DEADLINE", "AMOUNT", "DEADLINE_TYPE", "CAREER_LEVEL", "DURATION", "ELIGIBILITY_REQUIREMENTS", "LIMITED_SUBMISSION", "PROJECT/AWARD_TYPE"] and pd.notnull(row[col]):
                     st.markdown(f"<b>{col}:</b> {row[col]}", unsafe_allow_html=True)
                     
             if pd.notnull(row["DESCRIPTION"]):
