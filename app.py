@@ -175,12 +175,7 @@ def main():
     selected_item = st.session_state.filtered_df.loc[selected_index]
     selected_item = selected_item.reset_index(drop=True)
 
-    open_outlook_btn = st.empty()
-    email_body_html = st.empty()
-    st.markdown("<br>", unsafe_allow_html=True)
-
     if not selected_item.empty:
-        email_body = ''
         for idx, row in selected_item.iterrows():
             sponsor_opportunity = ''
             if pd.notnull(row["SPONSOR"]) and pd.notnull(row["OPPORTUNITY_NAME"]):
@@ -197,41 +192,26 @@ def main():
             
             if sponsor_opportunity:
                 st.markdown(sponsor_opportunity, unsafe_allow_html=True)
-                email_body += f"{sponsor_opportunity}<br><br>"
 
             if pd.notnull(row["AMOUNT"]):
                 st.markdown(f"<b>AMOUNT:</b> {row['AMOUNT']}", unsafe_allow_html=True)
-                email_body += f"<b>AMOUNT:</b> {row['AMOUNT']}<br><br>"
 
             if pd.notnull(row["DEADLINE"]):
                 st.markdown(f"<b>DEADLINE:</b> {row['DEADLINE_TYPE']} due {row['DEADLINE']}", unsafe_allow_html=True)
-                email_body += f"<b>DEADLINE:</b> {row['DEADLINE_TYPE']} due {row['DEADLINE']}<br><br>"
             else:
                 st.markdown(f"<b>DEADLINE:</b> Rolling", unsafe_allow_html=True)
-                email_body += f"<b>DEADLINE:</b> Rolling<br><br>"
 
             for col in selected_item.columns:
                 if col not in ["select", "ID_NUMBER", "SPONSOR", "OPPORTUNITY_NAME", "URL", "TAGS", "DESCRIPTION", "DEADLINE_STATUS", "DEADLINE", "AMOUNT", "DEADLINE_TYPE", "CAREER_LEVEL", "DURATION", "ELIGIBILITY_REQUIREMENTS", "LIMITED_SUBMISSION", "PROJECT/AWARD_TYPE"] and pd.notnull(row[col]):
                     st.markdown(f"<b>{col}:</b> {row[col]}", unsafe_allow_html=True)
-                    email_body += f"<b>{col}:</b> {row[col]}<br><br>"
                     
             if pd.notnull(row["DESCRIPTION"]):
                 st.markdown(f"<b>DESCRIPTION:</b> {row['DESCRIPTION']}", unsafe_allow_html=True)
-                email_body += f"<b>DESCRIPTION:</b> {row['DESCRIPTION']}<br><br>"
 
             if pd.notnull(row["ELIGIBILITY_REQUIREMENTS"]):
                 st.markdown(f"<b>ELIGIBILITY REQUIREMENTS:</b> {row['ELIGIBILITY_REQUIREMENTS']}", unsafe_allow_html=True)
-                email_body += f"<b>ELIGIBILITY REQUIREMENTS:</b> {row['ELIGIBILITY_REQUIREMENTS']}<br><br>"
 
             st.markdown("<br>", unsafe_allow_html=True)
-            email_body += "<br>"
-
-        if email_body:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as temp_file:
-                temp_file.write(email_body.encode("utf-8"))
-                temp_path = temp_file.name
-
-            open_outlook_btn.button("Generate Email (Beta)", on_click=lambda: os.system(f'start outlook.exe /a "{temp_path}"'))
 
 if __name__ == "__main__":
     main()
