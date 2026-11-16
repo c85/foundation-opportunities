@@ -34,7 +34,7 @@ def airtable_access():
     request_id_match = request_id_pattern.search(script_content)
     request_id = request_id_match.group(1) if request_id_match else None
 
-    url_with_params_pattern = re.compile(r'urlWithParams:\s*"(.*?)"')
+    url_with_params_pattern = re.compile(r'urlWithParams\s*[:=]\s*"(.*?)"')
     url_with_params_match = url_with_params_pattern.search(script_content)
     url_with_params = url_with_params_match.group(1) if url_with_params_match else None
 
